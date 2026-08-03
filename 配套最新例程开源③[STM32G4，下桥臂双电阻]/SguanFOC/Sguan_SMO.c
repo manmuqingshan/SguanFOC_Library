@@ -52,7 +52,7 @@ static void SMO_RUN(SMO_STRUCT *smo,SMO_GO_STRUCT *run){
 
     // 输出x轴的预测反电动势，并滤波
     float error = run->Output_Ix - run->Input_Ix;
-    Value_Limit(&error,1.0f,-1.0f);
+    error = Value_Sign(error);
     float Ex = error*smo->h;
     run->Output_Ex = smo->data.F_num*(Ex + run->F_i) - smo->data.F_den*run->F_o;
 
