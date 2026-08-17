@@ -24,7 +24,7 @@ void NLFO_Init(NLFO_STRUCT *nlfo){
     
     nlfo->go.Flux_pow = (float)(((double)nlfo->Flux)*((double)nlfo->Flux));
     nlfo->go.Flux_inv = (float)(1.0/((double)nlfo->Flux));
-    nlfo->go.Ls = (float)(((double)nlfo->Ld)+((double)(nlfo->Lq))/2.0);
+    nlfo->go.Ls = (float)((((double)nlfo->Ld)+((double)(nlfo->Lq)))/2.0);
 
     // 2.初始化为零
     nlfo->go.alpha_i = 0.0f;
