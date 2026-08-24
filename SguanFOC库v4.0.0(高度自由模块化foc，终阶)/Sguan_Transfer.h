@@ -25,8 +25,11 @@ typedef struct{
 }__TRANSFER1_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i;
+    float o;
+
+    float data_num[2];
+    float data_den[2];
 }__TRANSFER1_DATA_STRUCT;
 
 typedef struct{
@@ -61,8 +64,11 @@ typedef struct{
 }__TRANSFER2_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i[2];
+    float o[2];
+
+    float data_num[3];
+    float data_den[3];
 }__TRANSFER2_DATA_STRUCT;
 
 typedef struct{
@@ -99,8 +105,11 @@ typedef struct{
 }__TRANSFER3_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i[3];
+    float o[3];
+
+    float data_num[4];
+    float data_den[4];
 }__TRANSFER3_DATA_STRUCT;
 
 typedef struct{
@@ -139,8 +148,11 @@ typedef struct{
 }__TRANSFER4_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i[4];
+    float o[4];
+
+    float data_num[5];
+    float data_den[5];
 }__TRANSFER4_DATA_STRUCT;
 
 typedef struct{
@@ -181,8 +193,11 @@ typedef struct{
 }__TRANSFER5_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i[5];
+    float o[5];
+
+    float data_num[6];
+    float data_den[6];
 }__TRANSFER5_DATA_STRUCT;
 
 typedef struct{
@@ -204,27 +219,12 @@ typedef struct{
 
 typedef struct{
     float T;
-
-    float num0;
-    float num1;
-    float num2;
-    float num3;
-    float num4;
-    float num5;
-
-    float den0;
-    float den1;
-    float den2;
-    float den3;
-    float den4;
-    float den5;
-
-    uint8_t ReCalulate_Flag;
 }__INTEGRATOR_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i;
+
+    float data_num;
 }__INTEGRATOR_DATA_STRUCT;
 
 typedef struct{
@@ -246,27 +246,17 @@ typedef struct{
 
 typedef struct{
     float T;
-
-    float num0;
-    float num1;
-    float num2;
-    float num3;
-    float num4;
-    float num5;
-
-    float den0;
-    float den1;
-    float den2;
-    float den3;
-    float den4;
-    float den5;
+    float Wc;
 
     uint8_t ReCalulate_Flag;
 }__DERIVATIVE_Params_STRUCT;
 
 typedef struct{
-    float num;
-    float den;
+    float i;
+    float o;
+
+    float data_num[2];
+    float data_den[2];
 }__DERIVATIVE_DATA_STRUCT;
 
 typedef struct{
