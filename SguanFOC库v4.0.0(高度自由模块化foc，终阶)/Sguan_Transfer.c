@@ -5,15 +5,23 @@
 void Transfer_TRANSFER1_Loop(__TRANSFER1_STRUCT *transfer){
     // 1.传递函数运算系数动态计算
     if (transfer->Params.ReCalulate_Flag){
+        #if CONFIG_IQmath
+
+        #else // CONFIG_IQmath
         transfer->Data.data_num[0] = 2.0f*transfer->Params.num1 + transfer->Params.num0*transfer->Params.T;
         transfer->Data.data_num[1] = -2.0f*transfer->Params.num1 + transfer->Params.num0*transfer->Params.T;
 
         transfer->Data.data_den[0] = 2.0f*transfer->Params.den1 + transfer->Params.den0*transfer->Params.T;
         transfer->Data.data_num[1] = -2.0f*transfer->Params.den1 + transfer->Params.den0*transfer->Params.T;
+        #endif // CONFIG_IQmath
     }
 
     // 2.运算传递函数
+    #if CONFIG_IQmath
+
+    #else // CONFIG_IQmath
     transfer->Out.Output = (transfer->In.Input*transfer->Data.data_num[0] + transfer->Data.i*transfer->Data.data_num[1] - transfer->Data.o*transfer->Data.data_den[1])/transfer->Data.data_den[0];
+    #endif // CONFIG_IQmath
 
     // 3.更新历史数值
     transfer->Data.i = transfer->In.Input;
@@ -23,6 +31,9 @@ void Transfer_TRANSFER1_Loop(__TRANSFER1_STRUCT *transfer){
 void Transfer_TRANSFER2_Loop(__TRANSFER2_STRUCT *transfer){
     // 1.传递函数运算系数动态计算
     if (transfer->Params.ReCalulate_Flag){
+        #if CONFIG_IQmath
+
+        #else // CONFIG_IQmath
         transfer->Data.data_num[0] = 4.0f*transfer->Params.num2 + 2.0f*transfer->Params.num1*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[1] = -8.0f*transfer->Params.num2 + 2.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[2] = 4.0f*transfer->Params.num2 - 2.0f*transfer->Params.num1*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T;
@@ -30,10 +41,15 @@ void Transfer_TRANSFER2_Loop(__TRANSFER2_STRUCT *transfer){
         transfer->Data.data_den[0] = 4.0f*transfer->Params.den2 + 2.0f*transfer->Params.den1*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[1] = -8.0f*transfer->Params.den2 + 2.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[2] = 4.0f*transfer->Params.den2 - 2.0f*transfer->Params.den1*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T;
+        #endif // CONFIG_IQmath
     }
 
     // 2.运算传递函数
+    #if CONFIG_IQmath
+
+    #else // CONFIG_IQmath
     transfer->Out.Output = (transfer->In.Input*transfer->Data.data_num[0] + transfer->Data.i[0]*transfer->Data.data_num[1] + transfer->Data.i[1]*transfer->Data.data_num[2] - transfer->Data.o[0]*transfer->Data.data_den[1] - transfer->Data.o[1]*transfer->Data.data_den[2])/transfer->Data.data_den[0];
+    #endif // CONFIG_IQmath
 
     // 3.更新历史数值
     transfer->Data.i[1] = transfer->Data.i[0];
@@ -46,6 +62,9 @@ void Transfer_TRANSFER2_Loop(__TRANSFER2_STRUCT *transfer){
 void Transfer_TRANSFER3_Loop(__TRANSFER3_STRUCT *transfer){
     // 1.传递函数运算系数动态计算
     if (transfer->Params.ReCalulate_Flag){
+        #if CONFIG_IQmath
+
+        #else // CONFIG_IQmath
         transfer->Data.data_num[0] = 8.0f*transfer->Params.num3 + 4.0f*transfer->Params.num2*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[1] = -24.0f*transfer->Params.num3 - 4.0f*transfer->Params.num2*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T + 3.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[2] = 24.0f*transfer->Params.num3 - 4.0f*transfer->Params.num2*transfer->Params.T - 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T + 3.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -55,10 +74,15 @@ void Transfer_TRANSFER3_Loop(__TRANSFER3_STRUCT *transfer){
         transfer->Data.data_den[1] = -24.0f*transfer->Params.den3 - 4.0f*transfer->Params.den2*transfer->Params.T + 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T + 3.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[2] = 24.0f*transfer->Params.den3 - 4.0f*transfer->Params.den2*transfer->Params.T - 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T + 3.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[3] = -8.0f*transfer->Params.den3 + 4.0f*transfer->Params.den2*transfer->Params.T - 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
+        #endif // CONFIG_IQmath
     }
 
     // 2.运算传递函数
+    #if CONFIG_IQmath
+
+    #else // CONFIG_IQmath
     transfer->Out.Output = (transfer->In.Input*transfer->Data.data_num[0] + transfer->Data.i[0]*transfer->Data.data_num[1] + transfer->Data.i[1]*transfer->Data.data_num[2] + transfer->Data.i[2]*transfer->Data.data_num[3] - transfer->Data.o[0]*transfer->Data.data_den[1] - transfer->Data.o[1]*transfer->Data.data_den[2] - transfer->Data.o[2]*transfer->Data.data_den[3])/transfer->Data.data_den[0];
+    #endif // CONFIG_IQmath
 
     // 3.更新历史数值
     transfer->Data.i[2] = transfer->Data.i[1];
@@ -73,6 +97,9 @@ void Transfer_TRANSFER3_Loop(__TRANSFER3_STRUCT *transfer){
 void Transfer_TRANSFER4_Loop(__TRANSFER4_STRUCT *transfer){
     // 1.传递函数运算系数动态计算
     if (transfer->Params.ReCalulate_Flag){
+        #if CONFIG_IQmath
+
+        #else // CONFIG_IQmath
         transfer->Data.data_num[0] = 16.0f*transfer->Params.num4 + 8.0f*transfer->Params.num3*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[1] = -64.0f*transfer->Params.num4 - 16.0f*transfer->Params.num3*transfer->Params.T + 4.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[2] = 96.0f*transfer->Params.num4 - 8.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T + 6.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -84,10 +111,15 @@ void Transfer_TRANSFER4_Loop(__TRANSFER4_STRUCT *transfer){
         transfer->Data.data_den[2] = 96.0f*transfer->Params.den4 - 8.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T + 6.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[3] = -64.0f*transfer->Params.den4 + 16.0f*transfer->Params.den3*transfer->Params.T - 4.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[4] = 16.0f*transfer->Params.den4 - 8.0f*transfer->Params.den3*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T - 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
+        #endif // CONFIG_IQmath
     }
     
     // 2.运算传递函数
+    #if CONFIG_IQmath
+
+    #else // CONFIG_IQmath
     transfer->Out.Output = (transfer->In.Input*transfer->Data.data_num[0] + transfer->Data.i[0]*transfer->Data.data_num[1] + transfer->Data.i[1]*transfer->Data.data_num[2] + transfer->Data.i[2]*transfer->Data.data_num[3] + transfer->Data.i[3]*transfer->Data.data_num[4] - transfer->Data.o[0]*transfer->Data.data_den[1] - transfer->Data.o[1]*transfer->Data.data_den[2] - transfer->Data.o[2]*transfer->Data.data_den[3] - transfer->Data.o[3]*transfer->Data.data_den[4])/transfer->Data.data_den[0];
+    #endif // CONFIG_IQmath
 
     // 3.更新历史数值
     transfer->Data.i[3] = transfer->Data.i[2];
@@ -104,6 +136,9 @@ void Transfer_TRANSFER4_Loop(__TRANSFER4_STRUCT *transfer){
 void Transfer_TRANSFER5_Loop(__TRANSFER5_STRUCT *transfer){
     // 1.传递函数运算系数动态计算
     if (transfer->Params.ReCalulate_Flag){
+        #if CONFIG_IQmath
+
+        #else // CONFIG_IQmath
         transfer->Data.data_num[0] = 32.0f*transfer->Params.num5 + 16.0f*transfer->Params.num4*transfer->Params.T + 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[1] = -160.0f*transfer->Params.num5 - 48.0f*transfer->Params.num4*transfer->Params.T - 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 6.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[2] = 320.0f*transfer->Params.num5 + 32.0f*transfer->Params.num4*transfer->Params.T - 16.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T - 8.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 10.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -111,17 +146,21 @@ void Transfer_TRANSFER5_Loop(__TRANSFER5_STRUCT *transfer){
         transfer->Data.data_num[4] = 160.0f*transfer->Params.num5 - 48.0f*transfer->Params.num4*transfer->Params.T + 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 6.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_num[5] = -32.0f*transfer->Params.num5 + 16.0f*transfer->Params.num4*transfer->Params.T - 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         
-        
         transfer->Data.data_den[0] = 32.0f*transfer->Params.den5 + 16.0f*transfer->Params.den4*transfer->Params.T + 8.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[1] = -160.0f*transfer->Params.den5 - 48.0f*transfer->Params.den4*transfer->Params.T - 8.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 6.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[2] = 320.0f*transfer->Params.den5 + 32.0f*transfer->Params.den4*transfer->Params.T - 16.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T - 8.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 10.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[3] = -320.0f*transfer->Params.den5 + 32.0f*transfer->Params.den4*transfer->Params.T + 16.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T - 8.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 4.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 10.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[4] = 160.0f*transfer->Params.den5 - 48.0f*transfer->Params.den4*transfer->Params.T + 8.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 6.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
         transfer->Data.data_den[5] = -32.0f*transfer->Params.den5 + 16.0f*transfer->Params.den4*transfer->Params.T - 8.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
+        #endif // CONFIG_IQmath
     }
     
     // 2.运算传递函数
+    #if CONFIG_IQmath
+
+    #else // CONFIG_IQmath
     transfer->Out.Output = (transfer->In.Input*transfer->Data.data_num[0] + transfer->Data.i[0]*transfer->Data.data_num[1] + transfer->Data.i[1]*transfer->Data.data_num[2] + transfer->Data.i[2]*transfer->Data.data_num[3] + transfer->Data.i[3]*transfer->Data.data_num[4] + transfer->Data.i[4]*transfer->Data.data_num[5] - transfer->Data.o[0]*transfer->Data.data_den[1] - transfer->Data.o[1]*transfer->Data.data_den[2] - transfer->Data.o[2]*transfer->Data.data_den[3] - transfer->Data.o[3]*transfer->Data.data_den[4] - transfer->Data.o[4]*transfer->Data.data_den[5])/transfer->Data.data_den[0];
+    #endif // CONFIG_IQmath
 
     // 3.更新历史数值
     transfer->Data.i[4] = transfer->Data.i[3];
@@ -150,6 +189,10 @@ void Transfer_DERIVATIVE_Loop(__DERIVATIVE_STRUCT *derivative){
 
 
     // 2.更新历史数值
+}
+
+void Transfer_HALL_Loop(__HALL_STRUCT *hall){
+
 }
 
 void Transfer_LADRC1_Loop(__LADRC1_STRUCT *ladrc){
@@ -232,6 +275,10 @@ void Transfer_HFI_Loop(__HFI_STRUCT *hfi){
 
 }
 
+void Transfer_ROLO_Loop(__ROLO_STRUCT *rolo){
+
+}
+
 void Transfer_MARS_Loop(__MARS_STRUCT *mars){
 
 }
@@ -240,27 +287,28 @@ void Transfer_EKF_Loop(__EKF_STRUCT *ekf){
 
 }
 
-void Transfer_Sine_Loop(__SINE_STRUCT *sine){
+void Transfer_DELAY1_Loop(__DELAY1_STRUCT *delay){
 
 }
 
-void Transfer_Cosine_Loop(__COSINE_STRUCT *cosine){
+void Transfer_DELAY2_Loop(__DELAY2_STRUCT *delay){
 
 }
 
-void Transfer_Sign_Loop(__SIGN_STRUCT *sign){
+void Transfer_DELAY3_Loop(__DELAY3_STRUCT *delay){
 
 }
 
-void Transfer_Delay1_Loop(__DELAY1_STRUCT *delay){
+// ---------------------------工程模块Transfer---------------------------
+void Transfer_Sine_Loop(__Sine_STRUCT *sine){
 
 }
 
-void Transfer_Delay2_Loop(__DELAY2_STRUCT *delay){
+void Transfer_Cosine_Loop(__Cosine_STRUCT *cosine){
 
 }
 
-void Transfer_Delay3_Loop(__DELAY3_STRUCT *delay){
+void Transfer_Sign_Loop(__Sign_STRUCT *sign){
 
 }
 
@@ -288,12 +336,18 @@ void Transfer_SVPWM_Loop(__SVPWM_STRUCT *svpwm){
 
 }
 
-void Transfer_SingleRs_Loop(__SINGLERS_STRUCT *singlers){
+void Transfer_SingleRs_Loop(__SingleRs_STRUCT *singlers){
     
 }
 
 // ---------------------------工程模块Transfer---------------------------
 void Transfer_Init_TRANSFER1(__TRANSFER1_STRUCT *transfer){
+    #if CONFIG_IQmath
+    // 传递函数运算系数固定计算
+
+    // 初始化为零
+
+    #else // CONFIG_IQmath
     // 传递函数运算系数固定计算
     transfer->Data.data_num[0] = 2.0f*transfer->Params.num1 + transfer->Params.num0*transfer->Params.T;
     transfer->Data.data_num[1] = -2.0f*transfer->Params.num1 + transfer->Params.num0*transfer->Params.T;
@@ -307,9 +361,16 @@ void Transfer_Init_TRANSFER1(__TRANSFER1_STRUCT *transfer){
 
     transfer->In.Input = 0.0f;
     transfer->Out.Output = 0.0f;
+    #endif // CONFIG_IQmath
 }
 
 void Transfer_Init_TRANSFER2(__TRANSFER2_STRUCT *transfer){
+    #if CONFIG_IQmath
+    // 传递函数运算系数固定计算
+
+    // 初始化为零
+
+    #else // CONFIG_IQmath
     // 传递函数运算系数固定计算
     transfer->Data.data_num[0] = 4.0f*transfer->Params.num2 + 2.0f*transfer->Params.num1*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_num[1] = -8.0f*transfer->Params.num2 + 2.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T;
@@ -328,9 +389,16 @@ void Transfer_Init_TRANSFER2(__TRANSFER2_STRUCT *transfer){
 
     transfer->In.Input = 0.0f;
     transfer->Out.Output = 0.0f;
+    #endif // CONFIG_IQmath
 }
 
 void Transfer_Init_TRANSFER3(__TRANSFER3_STRUCT *transfer){
+    #if CONFIG_IQmath
+    // 传递函数运算系数固定计算
+
+    // 初始化为零
+
+    #else // CONFIG_IQmath
     // 传递函数运算系数固定计算
     transfer->Data.data_num[0] = 8.0f*transfer->Params.num3 + 4.0f*transfer->Params.num2*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_num[1] = -24.0f*transfer->Params.num3 - 4.0f*transfer->Params.num2*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T + 3.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -353,9 +421,16 @@ void Transfer_Init_TRANSFER3(__TRANSFER3_STRUCT *transfer){
 
     transfer->In.Input = 0.0f;
     transfer->Out.Output = 0.0f;
+    #endif // CONFIG_IQmath
 }
 
 void Transfer_Init_TRANSFER4(__TRANSFER4_STRUCT *transfer){
+    #if CONFIG_IQmath
+    // 传递函数运算系数固定计算
+
+    // 初始化为零
+
+    #else // CONFIG_IQmath
     // 传递函数运算系数固定计算
     transfer->Data.data_num[0] = 16.0f*transfer->Params.num4 + 8.0f*transfer->Params.num3*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_num[1] = -64.0f*transfer->Params.num4 - 16.0f*transfer->Params.num3*transfer->Params.T + 4.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -382,9 +457,16 @@ void Transfer_Init_TRANSFER4(__TRANSFER4_STRUCT *transfer){
 
     transfer->In.Input = 0.0f;
     transfer->Out.Output = 0.0f;
+    #endif // CONFIG_IQmath
 }
 
 void Transfer_Init_TRANSFER5(__TRANSFER5_STRUCT *transfer){
+    #if CONFIG_IQmath
+    // 传递函数运算系数固定计算
+
+    // 初始化为零
+
+    #else // CONFIG_IQmath
     // 传递函数运算系数固定计算
     transfer->Data.data_num[0] = 32.0f*transfer->Params.num5 + 16.0f*transfer->Params.num4*transfer->Params.T + 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_num[1] = -160.0f*transfer->Params.num5 - 48.0f*transfer->Params.num4*transfer->Params.T - 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 6.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -392,7 +474,6 @@ void Transfer_Init_TRANSFER5(__TRANSFER5_STRUCT *transfer){
     transfer->Data.data_num[3] = -320.0f*transfer->Params.num5 + 32.0f*transfer->Params.num4*transfer->Params.T + 16.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T - 8.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 4.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 10.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_num[4] = 160.0f*transfer->Params.num5 - 48.0f*transfer->Params.num4*transfer->Params.T + 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 6.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_num[5] = -32.0f*transfer->Params.num5 + 16.0f*transfer->Params.num4*transfer->Params.T - 8.0f*transfer->Params.num3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.num2*transfer->Params.T*transfer->Params.T*transfer->Params.T - 2.0f*transfer->Params.num1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.num0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
-    
     
     transfer->Data.data_den[0] = 32.0f*transfer->Params.den5 + 16.0f*transfer->Params.den4*transfer->Params.T + 8.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 2.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
     transfer->Data.data_den[1] = -160.0f*transfer->Params.den5 - 48.0f*transfer->Params.den4*transfer->Params.T - 8.0f*transfer->Params.den3*transfer->Params.T*transfer->Params.T + 4.0f*transfer->Params.den2*transfer->Params.T*transfer->Params.T*transfer->Params.T + 6.0f*transfer->Params.den1*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T + 5.0f*transfer->Params.den0*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T*transfer->Params.T;
@@ -416,10 +497,21 @@ void Transfer_Init_TRANSFER5(__TRANSFER5_STRUCT *transfer){
 
     transfer->In.Input = 0.0f;
     transfer->Out.Output = 0.0f;
+    #endif // CONFIG_IQmath
 }
 
 void Transfer_Init_INTEGRATOR(__INTEGRATOR_STRUCT *integrator){
+    #if CONFIG_IQmath
+    // 传递函数运算系数固定计算
 
+    // 初始化为零
+
+    #else // CONFIG_IQmath
+    // 传递函数运算系数固定计算
+
+    // 初始化为零
+    
+    #endif // CONFIG_IQmath
 }
 
 void Transfer_Init_DERIVATIVE(__DERIVATIVE_STRUCT *derivative){
@@ -506,6 +598,10 @@ void Transfer_Init_HFI(__HFI_STRUCT *hfi){
 
 }
 
+void Transfer_Init_ROLO(__ROLO_STRUCT *rolo){
+
+}
+
 void Transfer_Init_MARS(__MARS_STRUCT *mars){
 
 }
@@ -514,6 +610,19 @@ void Transfer_Init_EKF(__EKF_STRUCT *ekf){
 
 }
 
+void Transfer_Init_DELAY1(__DELAY1_STRUCT *delay){
+
+}
+
+void Transfer_Init_DELAY2(__DELAY2_STRUCT *delay){
+
+}
+
+void Transfer_Init_DELAY3(__DELAY3_STRUCT *delay){
+
+}
+
+// ---------------------------工程模块Transfer---------------------------
 void Transfer_ReInit_Integrator(void *p){
 
 }
